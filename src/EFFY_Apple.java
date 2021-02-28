@@ -40,12 +40,13 @@ public class EFFY_Apple {
         return spoilage;
     }
 
-    public void setSpoilage(int spoilage) {
+    public int setSpoilage(int spoilage) {
         if(spoilage>=1 && spoilage<=10) {
             this.spoilage = spoilage;
+            return spoilage;
         }
         else {
-            System.out.println(error);
+            return -1;
         }
     }
     @Override
