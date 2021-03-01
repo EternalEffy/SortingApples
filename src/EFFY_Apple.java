@@ -3,7 +3,6 @@ public class EFFY_Apple {
     private int weight;
     private String variety;
     private int spoilage;
-    private static final String error = "Ошибка. Задайте коэффициент испорченности от 1 до 10.";
 
     public EFFY_Apple(int price, int weight, String variety, int spoilage){
         setPrice(price);
