@@ -41,12 +41,9 @@ public class EFFY_Apple {
     }
 
     public int setSpoilage(int spoilage) {
-        if(spoilage>=1 && spoilage<=10) {
-            this.spoilage = spoilage;
-            return spoilage;
+        return spoilage>=1 && spoilage<=10? this.spoilage = spoilage : -1;
         }
-            return -1;
-    }
+
     @Override
     public String toString(){
         return "Яблоко сорта " + variety + "| цена = " + price + "| вес(в граммах) = "+ weight + "| коэффициент поренности = " + spoilage;

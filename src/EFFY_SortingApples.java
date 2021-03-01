@@ -18,50 +18,20 @@ public class EFFY_SortingApples {
         System.out.println(apple.toString());
     }
 
-    private void sortByPrice(String IdOrder){
-        if(IdOrder.equals(ascendingOrder)) {
-            Collections.sort(myApples, (obj,obj1) -> obj.getPrice()-obj1.getPrice());
-        }
-        else {
-            Collections.sort(myApples, Collections.reverseOrder((obj,obj1) -> obj.getPrice()-obj1.getPrice()));
-        }
+
+    public ArrayList<EFFY_Apple> sortApples(String IdOrder, int indexSort){
+        return sorter(IdOrder,indexSort);
     }
 
-    private void sortByWeight(String IdOrder){
-        if(IdOrder.equals(ascendingOrder)) {
-            Collections.sort(myApples, comparingInt(EFFY_Apple::getWeight));
-        }
-        else {
-            Collections.sort(myApples, Collections.reverseOrder(comparingInt(EFFY_Apple::getWeight)));
-        }
-    }
 
-    private void sortByVariety(String IdOrder){
-        if(IdOrder.equals(ascendingOrder)) {
-            Collections.sort(myApples, comparing(EFFY_Apple::getVariety));
+    private ArrayList<EFFY_Apple> sorter (String IdOrder, int indexSort){
+        switch (indexSort) {
+            case 0: Collections.sort(myApples, IdOrder.equals(ascendingOrder) ? (obj, obj1) -> obj.getPrice() - obj1.getPrice() : Collections.reverseOrder((obj, obj1) -> obj.getPrice() - obj1.getPrice())); break;
+            case 1: Collections.sort(myApples, IdOrder.equals(ascendingOrder) ? comparingInt(EFFY_Apple::getWeight) : Collections.reverseOrder(comparingInt(EFFY_Apple::getWeight)));break;
+            case 2: Collections.sort(myApples, IdOrder.equals(ascendingOrder) ? comparing(EFFY_Apple::getVariety) : Collections.reverseOrder(comparing(EFFY_Apple::getVariety)));break;
+            case 3: Collections.sort(myApples, IdOrder.equals(ascendingOrder) ? comparing(EFFY_Apple::getSpoilage) : Collections.reverseOrder(comparing(EFFY_Apple::getVariety)));
         }
-        else {
-            Collections.sort(myApples, Collections.reverseOrder(comparing(EFFY_Apple::getVariety)));
-        }
+        return myApples;
     }
-
-    private void sortBySpoilage(String IdOrder){
-        if(IdOrder.equals(ascendingOrder)) {
-            Collections.sort(myApples, comparing(EFFY_Apple::getSpoilage));
-        }
-        else {
-            Collections.sort(myApples, Collections.reverseOrder(comparing(EFFY_Apple::getSpoilage)));
-        }
-    }
-
-    public void sortApples(String IdOrder,int indexSort){
-        switch (indexSort){
-            case 0:sortByPrice(IdOrder);break;
-            case 1:sortByWeight(IdOrder);break;
-            case 2:sortByVariety(IdOrder);break;
-            case 3:sortBySpoilage(IdOrder);
-        }
-    }
-
 
 }

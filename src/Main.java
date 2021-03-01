@@ -8,11 +8,14 @@ public class Main {
         }
         myTry.showApples();
         System.out.println("___________________");
-        myTry.sortApples(EFFY_SortingApples.ascendingOrder,0);
+        myTry.sortApples(EFFY_SortingApples.ascendingOrder, 0);
         myTry.showApples();
         System.out.println("___________________");
         myTry.sortApples(EFFY_SortingApples.descendingOrder,0);
         myTry.showApples();
-
+        System.out.println("___________________");
+        myTry.sortApples(EFFY_SortingApples.ascendingOrder,2);
+        myTry.showApples();
+        System.out.println("___________________");
     }
 }
