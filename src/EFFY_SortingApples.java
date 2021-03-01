@@ -13,23 +13,26 @@ public class EFFY_SortingApples {
     public static final String weightAndPrice = "WAP";
     public static final String sortAndPrice = "SAP";
 
-    public static void add(EFFY_Apple apple){
-        myApples.add(apple);
+    public static List<EFFY_Apple> add(int i){
+        for(int j=0;j<i;j++) {
+            myApples.add(Generator.genApple());
+        }
+        return myApples;
     }
 
-    public void showApples(){
-        for(EFFY_Apple apple:myApples)
+    public void showApples(List<EFFY_Apple> list){
+        for(EFFY_Apple apple:list)
         System.out.println(apple.toString());
     }
 
 
-    public ArrayList<EFFY_Apple> sortApples(String IdOrder, int indexSort){
-        return sorter(IdOrder,indexSort);
+    public List<EFFY_Apple> sortApples(String IdOrder, int indexSort,List<EFFY_Apple> list){
+        return sorter(IdOrder,indexSort,list);
     }
 
 
-    private ArrayList<EFFY_Apple> sorter (String IdOrder, int indexSort){
-             Collections.sort(myApples, (IdOrder.equals(ascendingOrder) ?
+    private List<EFFY_Apple> sorter (String IdOrder, int indexSort,List<EFFY_Apple> list){
+             Collections.sort(list, (IdOrder.equals(ascendingOrder) ?
                      (indexSort==0?(obj, obj1) -> obj.getPrice() - obj1.getPrice():
                      indexSort==1? comparingInt(EFFY_Apple::getWeight):
                      indexSort==2? comparing(EFFY_Apple::getVariety):
@@ -39,21 +42,15 @@ public class EFFY_SortingApples {
                              indexSort==2? Collections.reverseOrder(comparing(EFFY_Apple::getVariety)):
                                      Collections.reverseOrder(comparing(EFFY_Apple::getVariety)))));
 
-        return myApples;
+        return list;
     }
 
-    private List<EFFY_Apple> onDemandList (String wayOfSort,String sort,int weight,int price){
+    public List<EFFY_Apple> onDemandList (String wayOfSort,String sort,int weight,int price){
         return  myApples.stream()
                 .filter(wayOfSort.equals(sortAndWeight)? apple -> apple.getVariety().equals(sort) && apple.getWeight()==weight:
                     wayOfSort.equals(weightAndPrice)? apple -> apple.getWeight()==weight && apple.getPrice()==price:
                             apple -> apple.getVariety().equals(sort) && apple.getPrice()==price)
                 .collect(Collectors.toList());
-    }
-
-
-    public void showOnDemandList(String wayOfSort, String sort, int weight, int price){
-        for(EFFY_Apple apple:onDemandList(wayOfSort,sort,weight,price))
-            System.out.println(apple.toString());
     }
 
 }
