@@ -1,37 +1,7 @@
 import java.util.*;
 
-class ComparatorPrice implements Comparator<EFFY_Apple>{
-    @Override
-    public int compare(EFFY_Apple o1, EFFY_Apple o2) {
-        return Integer.compare(o1.getPrice(), o2.getPrice());
-    }
-}
-
-class ComparatorWeight implements Comparator<EFFY_Apple>{
-
-    @Override
-    public int compare(EFFY_Apple o1, EFFY_Apple o2) {
-        return Integer.compare(o1.getWeight(),o2.getWeight());
-    }
-}
-
-class ComparatorVariety implements Comparator<EFFY_Apple>{
-
-    @Override
-    public int compare(EFFY_Apple o1, EFFY_Apple o2) {
-        return o1.getVariety().compareTo(o2.getVariety());
-    }
-}
-
-class ComparatorSpoilage implements Comparator<EFFY_Apple>{
-
-    @Override
-    public int compare(EFFY_Apple o1, EFFY_Apple o2) {
-        return Integer.compare(o1.getSpoilage(), o2.getSpoilage());
-    }
-}
-
-
+import static java.util.Comparator.comparing;
+import static java.util.Comparator.comparingInt;
 
 
 public class EFFY_SortingApples {
@@ -48,39 +18,48 @@ public class EFFY_SortingApples {
         System.out.println(apple.toString());
     }
 
-    public void sortByPrice(String IdOrder){
+    private void sortByPrice(String IdOrder){
         if(IdOrder.equals(ascendingOrder)) {
-            Collections.sort(myApples, new ComparatorPrice());
+            Collections.sort(myApples, (obj,obj1) -> obj.getPrice()-obj1.getPrice());
         }
         else {
-            Collections.sort(myApples,Collections.reverseOrder(new ComparatorPrice()));
+            Collections.sort(myApples, Collections.reverseOrder((obj,obj1) -> obj.getPrice()-obj1.getPrice()));
         }
     }
 
-    public void sortByWeight(String IdOrder){
+    private void sortByWeight(String IdOrder){
         if(IdOrder.equals(ascendingOrder)) {
-            Collections.sort(myApples, new ComparatorWeight());
+            Collections.sort(myApples, comparingInt(EFFY_Apple::getWeight));
         }
         else {
-            Collections.sort(myApples, Collections.reverseOrder(new ComparatorWeight()));
+            Collections.sort(myApples, Collections.reverseOrder(comparingInt(EFFY_Apple::getWeight)));
         }
     }
 
-    public void sortByVariety(String IdOrder){
-        if(IdOrder.equals(ascendingOrder)){
-            Collections.sort(myApples, new ComparatorVariety());
+    private void sortByVariety(String IdOrder){
+        if(IdOrder.equals(ascendingOrder)) {
+            Collections.sort(myApples, comparing(EFFY_Apple::getVariety));
         }
         else {
-            Collections.sort(myApples, Collections.reverseOrder(new ComparatorVariety()));
+            Collections.sort(myApples, Collections.reverseOrder(comparing(EFFY_Apple::getVariety)));
         }
     }
 
-    public void sortBySpoilage(String IdOrder){
-        if(IdOrder.equals(ascendingOrder)){
-            Collections.sort(myApples, new ComparatorSpoilage());
+    private void sortBySpoilage(String IdOrder){
+        if(IdOrder.equals(ascendingOrder)) {
+            Collections.sort(myApples, comparing(EFFY_Apple::getSpoilage));
         }
-        else{
-            Collections.sort(myApples, Collections.reverseOrder(new ComparatorSpoilage()));
+        else {
+            Collections.sort(myApples, Collections.reverseOrder(comparing(EFFY_Apple::getSpoilage)));
+        }
+    }
+
+    public void sortApples(String IdOrder,int indexSort){
+        switch (indexSort){
+            case 0:sortByPrice(IdOrder);break;
+            case 1:sortByWeight(IdOrder);break;
+            case 2:sortByVariety(IdOrder);break;
+            case 3:sortBySpoilage(IdOrder);
         }
     }
 

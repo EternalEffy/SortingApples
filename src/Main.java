@@ -7,17 +7,12 @@ public class Main {
             myTry.add(Generator.genApple());
         }
         myTry.showApples();
-        System.out.println("____________________________________");
-        myTry.sortByVariety(EFFY_SortingApples.ascendingOrder);
+        System.out.println("___________________");
+        myTry.sortApples(EFFY_SortingApples.ascendingOrder,0);
         myTry.showApples();
-        System.out.println("____________________________________");
-        myTry.sortByVariety(EFFY_SortingApples.descendingOrder);
+        System.out.println("___________________");
+        myTry.sortApples(EFFY_SortingApples.descendingOrder,0);
         myTry.showApples();
-        System.out.println("____________________________________");
-        myTry.sortBySpoilage(EFFY_SortingApples.ascendingOrder);
-        myTry.showApples();
-        System.out.println("____________________________________");
-        myTry.sortBySpoilage(EFFY_SortingApples.descendingOrder);
-        myTry.showApples();
+
     }
 }

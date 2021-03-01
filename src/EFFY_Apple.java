@@ -45,12 +45,10 @@ public class EFFY_Apple {
             this.spoilage = spoilage;
             return spoilage;
         }
-        else {
             return -1;
-        }
     }
     @Override
     public String toString(){
-        return "Яблоко сорта " + variety + " цена = " + price + " вес(в граммах) = "+ weight + " коэффициент поренности = " + spoilage;
+        return "Яблоко сорта " + variety + "| цена = " + price + "| вес(в граммах) = "+ weight + "| коэффициент поренности = " + spoilage;
     }
 }
