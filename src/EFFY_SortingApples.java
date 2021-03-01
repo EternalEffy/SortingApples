@@ -25,13 +25,18 @@ public class EFFY_SortingApples {
 
 
     private ArrayList<EFFY_Apple> sorter (String IdOrder, int indexSort){
-        switch (indexSort) {
-            case 0: Collections.sort(myApples, IdOrder.equals(ascendingOrder) ? (obj, obj1) -> obj.getPrice() - obj1.getPrice() : Collections.reverseOrder((obj, obj1) -> obj.getPrice() - obj1.getPrice())); break;
-            case 1: Collections.sort(myApples, IdOrder.equals(ascendingOrder) ? comparingInt(EFFY_Apple::getWeight) : Collections.reverseOrder(comparingInt(EFFY_Apple::getWeight)));break;
-            case 2: Collections.sort(myApples, IdOrder.equals(ascendingOrder) ? comparing(EFFY_Apple::getVariety) : Collections.reverseOrder(comparing(EFFY_Apple::getVariety)));break;
-            case 3: Collections.sort(myApples, IdOrder.equals(ascendingOrder) ? comparing(EFFY_Apple::getSpoilage) : Collections.reverseOrder(comparing(EFFY_Apple::getVariety)));
-        }
+             Collections.sort(myApples, (IdOrder.equals(ascendingOrder) ?
+                     (indexSort==0?(obj, obj1) -> obj.getPrice() - obj1.getPrice():
+                     indexSort==1? comparingInt(EFFY_Apple::getWeight):
+                     indexSort==2? comparing(EFFY_Apple::getVariety):
+                             comparing(EFFY_Apple::getSpoilage)) :
+                     (indexSort==0? Collections.reverseOrder((obj, obj1) -> obj.getPrice() - obj1.getPrice()):
+                     indexSort==1? Collections.reverseOrder(comparingInt(EFFY_Apple::getWeight)):
+                             indexSort==2? Collections.reverseOrder(comparing(EFFY_Apple::getVariety)):
+                                     Collections.reverseOrder(comparing(EFFY_Apple::getVariety)))));
+
         return myApples;
     }
+
 
 }
